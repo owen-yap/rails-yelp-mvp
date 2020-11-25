@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Restaurants</h1>
+  <ol>
+    <% @restaurants.each do |restaurant| %>
+      <li>
+        <h3><%= restaurant.name %></h3>
+        <p><%= restaurant.address %></p>
+        <p><%= restaurant.reviews.average(:rating).round(2) %>/5</p>
+        <p><%= restaurant.reviews.first.content %></p>
+      </li>
+    <% end %>
+  </ol>
+</div>
