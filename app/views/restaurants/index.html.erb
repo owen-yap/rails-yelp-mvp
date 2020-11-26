@@ -1,12 +1,15 @@
 <div class="container">
-  <h1>Restaurants</h1>
+  <h1>Restaurants</h1><%= link_to "New Restaurant", new_restaurant_path, class: "btn btn-primary mb-3"%>
   <ol>
     <% @restaurants.each do |restaurant| %>
       <li>
-        <h3><%= restaurant.name %></h3>
+        <h3><a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a></h3>
         <p><%= restaurant.address %></p>
-        <p><%= restaurant.reviews.average(:rating).round(2) %>/5</p>
-        <p><%= restaurant.reviews.first.content %></p>
+        <% unless restaurant.reviews.empty? %>
+          <p><%= restaurant.reviews.average(:rating).round(2) %>/5</p>
+          <p><%= restaurant.reviews.first.content %></p>
+        <% end %>
+        
       </li>
     <% end %>
   </ol>

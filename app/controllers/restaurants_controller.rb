@@ -3,13 +3,18 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.all
   end
 
-  def create
+  def new
     @restaurant = Restaurant.new
   end
 
-  def new
+  def create
     @restaurant = Restaurant.new(restos_params)
-    @restos.save
+    if @restaurant.valid?
+      @restaurant.save
+      redirect_to "/restaurants/#{@restaurant.id}"
+    else
+      render :new
+    end
   end
 
   def show

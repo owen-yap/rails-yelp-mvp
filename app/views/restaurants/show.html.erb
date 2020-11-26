@@ -1,0 +1,18 @@
+<div class="container">
+  <%= link_to "View more restaurants", restaurants_path, class: "btn btn-secondary mb-3 mt-3" %>
+  <h1><%= @restaurant.name %></h1>
+  <h3><%= @restaurant.address %></h3>
+  <div class="restaurant-pic"></div>
+  <%= link_to "Add a review", new_restaurant_review_path(@restaurant.id), class: "btn btn-danger mt-3" %>
+  <% unless @restaurant.reviews.empty? %>
+    <h2>Reviews</h2>
+    <ol>
+      <% @restaurant.reviews.each do |review| %>
+        <li>
+          <h3>Rating: <%= review.rating %>/5</h3>
+          <p><%= review.content %></p>
+        </li>
+      <% end %>
+    </ol>
+  <% end %>
+</div>
